@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#8fd16a"/><title>奶了个蛙 · Naiwa Triple Match</title>
+<link rel="icon" href="./assets/logo.webp"/></head>
+<body><div id="app">
+<header id="top"><img src="./assets/logo.webp" alt=""/><div class="title">奶了个蛙</div><div id="lvl">第 1 关</div><button id="snd" aria-label="声音">🔊</button><button id="restart">重开</button></header>
+<main id="board"></main>
+<section id="buffer"></section>
+<section id="tray"></section>
+<footer id="props">
+  <button id="p-out"><b>移出</b><small>移出 3 张</small></button>
+  <button id="p-undo"><b>撤回</b><small>撤回 1 张</small></button>
+  <button id="p-shuffle"><b>洗牌</b><small>打乱场上</small></button>
+</footer>
+<div id="overlay" hidden><div class="pop"><img id="popimg" alt=""/><h2 id="poptitle"></h2><p id="poptext"></p><div class="row"><button id="retry">再试一次</button><button id="next">下一关</button></div></div></div>
+</div><script type="module" src="/src/main.ts"></script></body></html>

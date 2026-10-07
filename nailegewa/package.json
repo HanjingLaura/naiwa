@@ -1,0 +1,18 @@
+{
+  "name": "naiwa-nailegewa",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:vercel": "tsc && BASE_PATH=/naiwa/nailegewa/ vite build --outDir dist/naiwa/nailegewa --emptyOutDir",
+    "test": "vitest run",
+    "assets": "python3 scripts/prepare-assets.py"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3"
+  }
+}
