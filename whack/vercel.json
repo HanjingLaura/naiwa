@@ -1,0 +1,7 @@
+{
+  "framework": null,
+  "installCommand": "npm ci",
+  "buildCommand": "rm -rf dist && npm run build:vercel",
+  "outputDirectory": "dist",
+  "redirects": [{ "source": "/", "destination": "/naiwa/whack/", "permanent": false }]
+}
