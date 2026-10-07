@@ -85,3 +85,26 @@ The exhibit images are built by `scripts/build-exhibits.py`, which reads from th
 | 旅行明信片 | 奶蛙旅行小屋 TravelMilkyFrog — https://www.bilibili.com/toy/TravelMilkyFrog/index.html |
 | 特效道具 | gugupeng effects; 合成大奶蛙 BigNaiWa fruits — https://yhsome.github.io/BigNaiWa/ ; frog-miner props |
 | 3D 模型 | 奶蛙跳舞 nailong-dance (`rigged.glb`, `baby1.glb`, `gifts/*.glb`) — https://nailong-dance.pages.dev/ |
+
+## 奶了个蛙 · Triple-match (`nailegewa/`)
+
+Live: https://hanjing-laura.vercel.app/naiwa/nailegewa/
+
+A 羊了个羊-style game with naiwa tile faces:
+- Tiles are stacked in overlapping layers, and only uncovered tiles can be tapped.
+- Tapped tiles go into a 7-slot tray, grouped by face. Three of the same face clear. You lose when the tray fills up, and win when the board is empty.
+- Level 1 is easy (36 tiles, 6 faces, 3 layers). Level 2 is hard (156 tiles, 13 faces, 9 layers).
+- Props, each usable once per game: 移出 (move 3 tiles out of the tray), 撤回 (undo), 洗牌 (shuffle).
+- Optional WebAudio sounds, and a fixed screen on mobile.
+- **Every level is solvable:** levels are built by "reverse play". The generator repeatedly takes 3 currently uncovered tiles and gives them the same face, so playing in that order always clears the board. The tests replay this solution for 20 seeds per level.
+
+### ASSETS / credits (`nailegewa/public/assets/`)
+
+⚠️ These are **fan-made 奶蛙 assets taken from third-party fan games. They are NOT owned by this repo and are NOT licensed for redistribution.** They are used at the repo owner's discretion.
+
+| File | Source image | Source game |
+|---|---|---|
+| t0–t13.webp (tile faces) | frog-rare-10, 11, 12, 13, 14, 15, 16, 25, 40, 8, 30, 38, 4, 45 | 青蛙矿工 frog-miner — https://66970010-boop.github.io/frog-miner/ |
+| logo.webp | frog-rare-22 | frog-miner |
+| win.webp | bdde48ade4583f2a | 奶蛙咕咕碰 gugupeng — https://naiwa-gugupeng.pages.dev/ |
+| lose.webp | a01bb7af93d35e5c | gugupeng |
