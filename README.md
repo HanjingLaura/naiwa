@@ -32,3 +32,29 @@ npm run build    # static output in dist/ (relative base, works on GitHub Pages 
 | win.webp (laughing pose) | 0a01725bd3bac957 (stray sprite fragments removed) | gugupeng |
 | back.webp | green card background drawn for this repo + frog-rare-22 (奶蛙人 flag) | frog-miner |
 | table.webp | felt tile drawn for this repo | original |
+
+## 奶蛙扫雷 · Minesweeper (`minesweeper/`)
+
+Live: https://hanjing-laura.vercel.app/naiwa/minesweeper/
+
+Classic Minesweeper with naiwa art:
+- Levels: 初级 9×9/10, 中级 16×16/40, 高级 30×16/99. The first click is always safe and opens an empty area.
+- Gameplay: flood reveal, flags, chord (tap a number, or both/middle mouse buttons), timer, mine counter, and best times saved in localStorage.
+- The face button changes expression: idle, worried while pressing, a wink on a win, dizzy on a loss. Win and lose pop-ups.
+- Mobile: tap to reveal, long-press to flag, and a 插旗模式 toggle. The screen is fixed, and on a portrait phone the expert board is rotated 90° so it fits.
+- `npm test` runs the board logic tests. `npm run build:vercel` builds for the `/naiwa/minesweeper/` path. `npm run assets` rebuilds the images from the local survey dump.
+
+### ASSETS / credits (`minesweeper/public/assets/`)
+
+⚠️ These are **fan-made 奶蛙 assets taken from third-party fan games. They are NOT owned by this repo and are NOT licensed for redistribution.** They are used at the repo owner's discretion. They were cropped (stray sprite fragments removed), resized and converted to webp.
+
+| File | Source image | Source game |
+|---|---|---|
+| mine.webp | 3cf447de0a6da507 (dizzy, flat) | 奶蛙咕咕碰 gugupeng — https://naiwa-gugupeng.pages.dev/ |
+| flag.webp | frog-rare-22 (奶蛙人 flag) | 青蛙矿工 frog-miner — https://66970010-boop.github.io/frog-miner/ |
+| face-idle.webp | 93db9f6eda3e71a5 | gugupeng |
+| face-worried.webp | 810e9d06af4c98a9 | gugupeng |
+| face-win.webp | bdde48ade4583f2a | gugupeng |
+| face-dizzy.webp | a01bb7af93d35e5c | gugupeng |
+| win.webp | 0a01725bd3bac957 (laughing) | gugupeng |
+| lose.webp | e818016a0d25c224 (dizzy) | gugupeng |
