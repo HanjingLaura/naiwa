@@ -39,7 +39,7 @@ function paint() {
     const d = cells[i]; let cls = 'c', html = '';
     if (c.open) {
       cls += ' o';
-      if (c.mine) { html = `<img src="${A('mine')}" alt="">`; if (i === b.boom) cls += ' boom'; }
+      if (c.mine) { html = `<img src="${A(i % 6 ? `mine${i % 6}` : 'mine')}" alt="">`; if (i === b.boom) cls += ' boom'; }
       else if (c.n) { html = String(c.n); cls += ' n' + c.n; }
     } else if (c.flag) { html = `<img src="${A('flag')}" alt="">`; if (b.status === 'lost' && !c.mine) cls += ' wrong'; }
     if (d.className !== cls) d.className = cls;

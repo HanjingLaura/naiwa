@@ -42,12 +42,22 @@ describe('generation is always solvable', () => {
   for (const li of [0, 1]) it(`level ${li + 1}: following the generated solution clears the board (20 seeds)`, () => {
     for (let n = 0; n < 20; n++) {
       const g = generate(li, rng); const L = LEVELS[li];
-      expect(g.tiles.length).toBe(L.tiles); expect(L.tiles % 3).toBe(0);
+      expect(g.tiles.length).toBe(L.tiles + 2 * L.stacks); expect(g.tiles.length % 3).toBe(0);
       const counts = new Map<number, number>(); g.tiles.forEach(t => counts.set(t.type, (counts.get(t.type) || 0) + 1));
       for (const c of counts.values()) expect(c % 3).toBe(0);
       for (const id of g.solution) { expect(clickable(g, id)).toBe(true); pick(g, id); expect(g.tray.length).toBeLessThan(3); }
       expect(g.status).toBe('won');
     }
   });
-  it('level 2 is harder than level 1', () => { expect(LEVELS[1].tiles).toBeGreaterThan(LEVELS[0].tiles * 3); expect(LEVELS[1].types).toBeGreaterThan(LEVELS[0].types); });
+  it('level 1 is a tiny tutorial; level 2 is brutal (15+ types, 10+ layers, blind side piles)', () => {
+    expect(LEVELS[0].tiles).toBeLessThanOrEqual(18); expect(LEVELS[0].stacks).toBe(0);
+    expect(LEVELS[1].types).toBeGreaterThanOrEqual(15); expect(LEVELS[1].layers).toBeGreaterThanOrEqual(10); expect(LEVELS[1].stacks).toBeGreaterThan(0);
+    const g = generate(1, rng); const board = g.tiles.filter(t => t.stack === undefined);
+    const covered = board.filter(t => isCovered(board, t)).length; expect(covered / board.length).toBeGreaterThan(0.75);
+  });
+  it('side piles: only the top card of each pile is clickable', () => {
+    const g = generate(1, rng); const left = g.tiles.filter(t => t.stack === 0).sort((a, b) => a.idx! - b.idx!);
+    expect(clickable(g, left.at(-1)!.id)).toBe(true); expect(clickable(g, left[0].id)).toBe(false);
+    pick(g, left.at(-1)!.id); expect(clickable(g, left.at(-2)!.id)).toBe(true);
+  });
 });

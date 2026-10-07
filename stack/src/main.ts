@@ -3,7 +3,7 @@ import { State, create, step, drop, saveBest, Block } from './stack';
 
 const A = (n: string) => `${import.meta.env.BASE_URL}assets/${n}.webp`;
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
-const stage = $('stage'), world = $('world'); const N = 12;
+const stage = $('stage'), world = $('world'); const N = 22;
 let s: State | null = null; let last = 0; let raf = 0; let aspects: number[] = [];
 let sound = localStorage.getItem('naiwa-stack-sound') !== '0'; let ac: AudioContext | null = null;
 const beep = (f: number, d = 0.08, type: OscillatorType = 'triangle') => { if (!sound) return; try { ac ||= new AudioContext(); const o = ac.createOscillator(), v = ac.createGain(); o.type = type; o.frequency.value = f; v.gain.setValueAtTime(.14, ac.currentTime); v.gain.exponentialRampToValueAtTime(.001, ac.currentTime + d); o.connect(v).connect(ac.destination); o.start(); o.stop(ac.currentTime + d); } catch {} };

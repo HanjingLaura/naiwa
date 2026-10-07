@@ -135,5 +135,7 @@ for f, n, d in [('rigged.glb', '跳舞奶蛙（带骨骼）', '可以跳舞的 3
   eid = f'model-{len(ex):03d}'; shutil.copy(D + f, f'public/models/{eid}.glb')
   ex.append(dict(id=eid, hall='model', name=n, desc=d, game='dance', model=f'models/{eid}.glb', w=600, h=600, tags=['3D', '模型']))
 shutil.copy(D + 'gifts/Textures/colormap.png', 'public/models/Textures/colormap.png')  # gift GLBs reference this external texture
+from captions import caption
+for e in ex: e['desc'] = caption(e)
 json.dump({'games': {k: {'name': v[0], 'url': v[1]} for k, v in GAMES.items()}, 'exhibits': ex}, open('src/exhibits.json', 'w'), ensure_ascii=False, indent=1)
 print(len(ex), {h_: sum(1 for e in ex if e['hall'] == h_) for h_ in ['photo', 'art', 'costume', 'pose', 'postcard', 'fx', 'model']})

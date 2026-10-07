@@ -6,11 +6,11 @@ describe('museum data', () => {
     for (const h of HALLS) expect(byHall(h.id).length).toBeGreaterThan(0);
     expect(byHall('photo').length).toBe(15); expect(byHall('art').length).toBe(21);
   });
-  it('every exhibit has name, description, known source game, and its image files', () => {
+  it('every exhibit has name, a short wall label (photo/art), known source game, and its image files', () => {
     const ids = new Set<string>();
     for (const e of EXHIBITS) {
       expect(ids.has(e.id)).toBe(false); ids.add(e.id);
-      expect(e.name.length).toBeGreaterThan(0); expect(e.desc.length).toBeGreaterThan(4);
+      expect(e.name.length).toBeGreaterThan(0); if (e.hall === 'photo' || e.hall === 'art') expect(e.desc.length).toBeGreaterThan(4); expect(e.desc.length).toBeLessThanOrEqual(40); // short wall labels
       expect(GAMES[e.game]).toBeTruthy();
       if (e.model) { expect(existsSync('public/' + e.model)).toBe(true); expect(existsSync('public/models/Textures/colormap.png')).toBe(true); expect(existsSync(`public/ex/${e.id}-t.webp`)).toBe(true); }
       else { expect(existsSync(`public/ex/${e.id}.webp`)).toBe(true); expect(existsSync(`public/ex/${e.id}-t.webp`)).toBe(true); }
