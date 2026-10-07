@@ -1,19 +1,21 @@
 /** 奶了个蛙 core logic: layered tiles, 7-slot tray, triples clear. Coordinates are in half-tile units (a tile spans 2×2). */
-export interface Tile { id: number; type: number; layer: number; x: number; y: number; gone: boolean }
+/** stack: side blind pile (0 = left, 1 = right); idx: position in the pile (higher = on top). Board tiles have no stack. */
+export interface Tile { id: number; type: number; layer: number; x: number; y: number; gone: boolean; stack?: number; idx?: number }
 export interface Game {
   tiles: Tile[]; tray: number[]; buffer: number[]; level: number; status: 'playing' | 'won' | 'lost';
   props: { undo: number; shuffle: number; moveOut: number }; history: number[]; cols: number; rows: number;
 }
 export const TRAY = 7;
-export interface LevelDef { types: number; layers: number; cols: number; rows: number; density: number; tiles: number }
+export interface LevelDef { types: number; layers: number; cols: number; rows: number; density: number; tiles: number; stacks: number }
 export const LEVELS: LevelDef[] = [
-  { types: 6, layers: 3, cols: 12, rows: 12, density: 1, tiles: 36 },     // level 1: easy
-  { types: 13, layers: 9, cols: 14, rows: 16, density: 1, tiles: 156 },  // level 2: hard
+  { types: 3, layers: 2, cols: 10, rows: 8, density: 1, tiles: 18, stacks: 0 },      // level 1: tutorial
+  { types: 18, layers: 12, cols: 14, rows: 16, density: 1, tiles: 216, stacks: 18 }, // level 2: brutal (+2 blind side piles of 18)
 ];
 const overlap = (a: Tile, b: Tile) => Math.abs(a.x - b.x) < 2 && Math.abs(a.y - b.y) < 2;
 /** a tile is covered when any live tile on a higher layer overlaps it */
 export function isCovered(tiles: Tile[], t: Tile): boolean {
-  return tiles.some(o => !o.gone && o !== t && o.layer > t.layer && overlap(o, t));
+  if (t.stack !== undefined) return tiles.some(o => !o.gone && o.stack === t.stack && o.idx! > t.idx!);
+  return tiles.some(o => !o.gone && o !== t && o.stack === undefined && o.layer > t.layer && overlap(o, t));
 }
 export const onBoard = (g: Game, t: Tile) => !t.gone && !g.tray.includes(t.id) && !g.buffer.includes(t.id);
 export function clickable(g: Game, id: number): boolean {
@@ -74,11 +76,13 @@ export function generate(levelIdx: number, rng = Math.random): Game & { solution
       }
     }
     if (tiles.length !== L.tiles) continue;
+    for (let st = 0; st < 2 && L.stacks; st++) for (let i = 0; i < L.stacks; i++) tiles.push({ id: tiles.length, type: -1, layer: 0, x: 0, y: 0, gone: false, stack: st, idx: i });
     // reverse play
     const order: number[] = []; const removed = new Set<number>();
-    const free = () => tiles.filter(t => !removed.has(t.id) && !tiles.some(o => !removed.has(o.id) && o.layer > t.layer && overlap(o, t)));
+    const live = () => tiles.filter(t => !removed.has(t.id));
+    const free = () => { const l = live(); return l.filter(t => !isCovered(l, t)); };
     let ok = true; let k = 0; const typeSeq: number[] = [];
-    const nTriples = L.tiles / 3; for (let i = 0; i < nTriples; i++) typeSeq.push(i % L.types);
+    const nTriples = tiles.length / 3; for (let i = 0; i < nTriples; i++) typeSeq.push(i % L.types);
     for (let i = typeSeq.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [typeSeq[i], typeSeq[j]] = [typeSeq[j], typeSeq[i]]; }
     while (removed.size < tiles.length) {
       const f = free(); if (f.length < 1) { ok = false; break; }
@@ -89,6 +93,7 @@ export function generate(levelIdx: number, rng = Math.random): Game & { solution
         const t = fr[Math.floor(rng() * fr.length)]; removed.add(t.id); triple.push(t);
       }
       if (!ok) break;
+      // reshuffle-free hardness: triples drawn from random far-apart free tiles; types are spread evenly
       const type = typeSeq[k++]; triple.forEach(t => { t.type = type; order.push(t.id); });
     }
     if (!ok) continue;

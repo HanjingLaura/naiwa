@@ -78,3 +78,14 @@ main { max-width: 1240px; margin: 0 auto; padding: 16px; min-height: 70vh; }
 }
 .more { text-align: right; font-weight: 700; } .ex.art .pic { max-height: 420px; }
 @media (max-width: 760px) { .game { padding: 12px; gap: 10px; } .game img { width: 84px; height: 84px; } .game b { font-size: 19px; } }
+
+/* gallery look: warm wall, serif labels, framed works */
+body{background:#f3ede2;color:#2b2420;font-family:"Songti SC","Noto Serif SC","Source Han Serif SC",Georgia,serif}
+#nav{background:#2b2420!important;color:#f3ede2}#nav a{color:#f3ede2}
+.hero,.hallhead{background:none!important;color:#2b2420!important;border-bottom:1px solid #c9bba6}
+.ex{background:transparent!important;box-shadow:none!important;border-radius:0!important}
+.ex.photo .pic,.ex.art .pic{border:10px solid #3a2c22;outline:1px solid #8a6b4a;box-shadow:0 8px 18px rgba(40,25,10,.25);background:#fff}
+.ex .pic{border-radius:0!important}
+.cap i{display:block;font-style:normal;font-size:11px;letter-spacing:.12em;color:#8a7a66}
+.cap b{font-weight:600}.cap small{color:#7a6a58}
+.sec{font-weight:500;letter-spacing:.2em;border-bottom:1px solid #c9bba6;padding-bottom:6px}

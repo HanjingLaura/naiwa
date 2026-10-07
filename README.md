@@ -59,6 +59,8 @@ Classic Minesweeper with naiwa art:
 | win.webp | 0a01725bd3bac957 (laughing) | gugupeng |
 | lose.webp | e818016a0d25c224 (dizzy) | gugupeng |
 
+**Mines (v2):** revealed mines rotate through gugupeng 3cf447, naishu-v24-dizzy, e7c4, naishu-yogurt-punk skin, 04fd2f (奶蛋) and frog-miner rare-45. Fan assets; not owned by this repo.
+
 ## 奶蛙博物馆 · Naiwa Museum (`museum/`)
 
 Live: https://hanjing-laura.vercel.app/naiwa/museum/
@@ -86,6 +88,8 @@ The exhibit images are built by `scripts/build-exhibits.py`, which reads from th
 | 特效道具 | gugupeng effects; 合成大奶蛙 BigNaiWa fruits — https://yhsome.github.io/BigNaiWa/ ; frog-miner props |
 | 3D 模型 | 奶蛙跳舞 nailong-dance (`rigged.glb`, `baby1.glb`, `gifts/*.glb` plus their external texture `gifts/Textures/colormap.png`, saved as `models/Textures/colormap.png`) — https://nailong-dance.pages.dev/ |
 
+**v2:** gallery-style look (warm wall, serif labels, framed works, No. numbers); captions shortened to hand-written wall labels in `museum/scripts/captions.py`.
+
 ## 奶了个蛙 · Triple-match (`nailegewa/`)
 
 Live: https://hanjing-laura.vercel.app/naiwa/nailegewa/
@@ -109,6 +113,9 @@ A 羊了个羊-style game with naiwa tile faces:
 | win.webp | bdde48ade4583f2a | 奶蛙咕咕碰 gugupeng — https://naiwa-gugupeng.pages.dev/ |
 | lose.webp | a01bb7af93d35e5c | gugupeng |
 
+**v2 — 羊了个羊 style:** level 1 is a 3-type tutorial; level 2 has 216 tiles, 12 layers, 18 types and two 18-card blind side piles (only the top card is playable). Every level is still generated solvable by reverse play.
+**Tiles t0–t17:** frog-miner rare-10/13/15/16/40/45/25/38/24/11; gugupeng 0a01, 3cf447, naishu-v24-idle (奶鼠), 04fd2f (奶蛋); skins galaxy-shepherd, night-foreman, naidan-caramel-pop, naishu-yogurt-punk. Fan assets; not owned by this repo.
+
 ## 打奶蛙 · Whack-a-Naiwa (`whack/`)
 
 Live: https://hanjing-laura.vercel.app/naiwa/whack/
@@ -128,6 +135,8 @@ Live: https://hanjing-laura.vercel.app/naiwa/whack/
 | gold.webp / gold-hit.webp | skins/naiwa-galaxy-shepherd / bdde48ade4583f2a |
 | bomb.webp / bomb-hit.webp | e7c4f898cd836e40 / 3cf447de0a6da507 |
 | win.webp | 0a01725bd3bac957 |
+
+**Asset pools (v2):** normal0–11 = gugupeng 07a8, 93db9f, 01662141, 97e2373e, 4690b22b, 04fd2f (奶蛋), naishu-v24-idle (奶鼠) + frog-miner rare-16/15/13/45/40; hit0–3 = gugupeng e3d3, 810e9d, ef2ebd8b, naishu-v24-hit; gold0–2 = skins galaxy-shepherd / night-foreman / naidan-caramel-pop; bomb0–2 = e7c4, a01bb7, naishu-v24-dizzy. All fan assets from 咕咕碰 (10-gugupeng) and 青蛙矿工 frog-miner; this repo does not own them.
 
 ## 奶蛙叠叠乐 · Naiwa Stack (`stack/`)
 
@@ -149,3 +158,5 @@ Live: https://hanjing-laura.vercel.app/naiwa/stack/
 | logo.webp | frog-rare-22 | frog-miner |
 | fall.webp | a01bb7af93d35e5c | 奶蛙咕咕碰 gugupeng — https://naiwa-gugupeng.pages.dev/ |
 | win.webp | bdde48ade4583f2a | gugupeng |
+
+**Blocks (v2):** b0–b21 interleave frog-miner costumes with gugupeng 93db9f, 01662141, 04fd2f (奶蛋), naishu-v24-idle, 97e2373e, 4690b22b and skins galaxy-shepherd, night-foreman, naidan-caramel-pop, naishu-yogurt-punk. Fan assets; not owned by this repo.

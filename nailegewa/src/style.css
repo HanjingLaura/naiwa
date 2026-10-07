@@ -31,3 +31,9 @@ button:disabled { opacity: .45; }
 .pop img { width: min(200px, 50vw); max-height: 34vh; object-fit: contain; animation: bob .9s infinite alternate; }
 .pop .row { display: flex; gap: 10px; justify-content: center; }
 @keyframes pop { from { transform: scale(.3); opacity: 0; } } @keyframes bob { to { transform: translateY(-10px); } }
+#piles { display: flex; justify-content: space-between; padding: 0 4px; margin: 2px 0; }
+#piles[hidden] { display: none; }
+.pile { position: relative; }
+.pile .tile { position: absolute; }
+.tile.back { background: repeating-linear-gradient(45deg, #6fb53a 0 6px, #5aa22c 6px 12px); border-color: #3f7d1d; box-shadow: 0 3px 0 #2f5d12; cursor: default; }
+.pile .cnt { position: absolute; top: -8px; right: -8px; z-index: 99; background: #3f5d10; color: #fff; font-size: 11px; font-weight: 800; border-radius: 99px; padding: 1px 6px; }

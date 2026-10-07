@@ -4,7 +4,10 @@ from PIL import Image
 from scipy import ndimage
 S = sys.argv[1] if len(sys.argv) > 1 else '/workspace/naiwa-survey'
 M = S + '/03-miner/files/frog-miner/assets/frog-rare-'; G = S + '/10-gugupeng/files/assets/'
-TILES = [M + f'{n}.webp' for n in (10, 11, 12, 13, 14, 15, 16, 25, 40, 8, 30, 38, 4, 45)]
+# 18 visually distinct faces from three different sources (frog-miner outfits, gugupeng poses/friends/skins)
+TILES = [M + f'{n}.webp' for n in (10, 13, 15, 16, 40, 45, 25, 38, 24, 11)] + [G + f for f in (
+  '0a01725bd3bac957.webp', '3cf447de0a6da507.webp', 'naishu-v24-idle.webp', '04fd2f4cbb3eaf15.webp',
+  'skins/naiwa-galaxy-shepherd.webp', 'skins/naiwa-night-foreman.webp', 'skins/naidan-caramel-pop.webp', 'skins/naishu-yogurt-punk.webp')]
 EXTRA = {'win': G + 'bdde48ade4583f2a.webp', 'lose': G + 'a01bb7af93d35e5c.webp', 'logo': M + '22.webp'}
 def clean(p, mx):
   im = Image.open(p).convert('RGBA'); im.thumbnail((900, 900)); a = np.array(im)

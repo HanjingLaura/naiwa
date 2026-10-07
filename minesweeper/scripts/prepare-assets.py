@@ -6,6 +6,9 @@ S = sys.argv[1] if len(sys.argv) > 1 else '/workspace/naiwa-survey'
 G = S + '/10-gugupeng/files/assets/'; M = S + '/03-miner/files/frog-miner/assets/'
 PICK = {  # out name: (source, max px)
   'mine': (G + '3cf447de0a6da507.webp', 128),
+  # extra hidden-naiwa variants: revealed mines rotate through these
+  'mine1': (G + 'naishu-v24-dizzy.webp', 128), 'mine2': (G + 'e7c4f898cd836e40.webp', 128), 'mine3': (G + 'skins/naishu-yogurt-punk.webp', 128),
+  'mine4': (G + '04fd2f4cbb3eaf15.webp', 128), 'mine5': (M + 'frog-rare-45.webp', 128),
   'flag': (M + 'frog-rare-22.webp', 128),
   'face-idle': (G + '93db9f6eda3e71a5.webp', 128),
   'face-worried': (G + '810e9d06af4c98a9.webp', 128),

@@ -13,13 +13,13 @@ const GAME_LINKS = [
   { name: '打奶蛙', sub: '60 秒 · 连击 · 金奶蛙', href: '/naiwa/whack/', pic: 'pose' },
   { name: '奶蛙叠叠乐', sub: '叠高高 · 完美连击 · 小心重心', href: '/naiwa/stack/', pic: 'costume' },
 ];
-document.getElementById('links')!.innerHTML = HALLS.map(h => `<a href="#/hall/${h.id}">${h.icon}<span>${h.name.replace('奶蛙', '').replace('馆', '')}</span></a>`).join('') + `<a href="#/games">🎮<span>游戏厅</span></a>`;
+document.getElementById('links')!.innerHTML = HALLS.map(h => `<a href="#/hall/${h.id}"><span>${h.name.replace('奶蛙', '').replace('馆', '')}</span></a>`).join('') + `<a href="#/games"><span>游戏厅</span></a>`;
 
 function card(e: Exhibit, list: Exhibit[]) {
   const ratio = ['photo', 'art', 'postcard'].includes(e.hall) ? `${e.w}/${e.h}` : '1/1';
   return `<button class="ex ${e.hall}" data-id="${e.id}" data-list="${list === EXHIBITS ? '' : ''}">
     <div class="pic" style="aspect-ratio:${ratio}"><img loading="lazy" src="${thumbFor(e)}" alt="${esc(e.name)}"/>${e.model ? '<span class="badge">3D</span>' : ''}</div>
-    <div class="cap"><b>${esc(e.name)}</b><small>${esc(GAMES[e.game].name)}</small></div></button>`;
+    <div class="cap"><i>No. ${String(EXHIBITS.indexOf(e) + 1).padStart(3, '0')}</i><b>${esc(e.name)}</b><small>${esc(GAMES[e.game].name)}</small></div></button>`;
 }
 let current: Exhibit[] = [];
 function grid(list: Exhibit[]) { current = list; return `<div class="grid">${list.map(e => card(e, list)).join('')}</div>`; }
@@ -32,25 +32,25 @@ function entrance() {
     <a class="cta" href="#/hall/photo">进入影像馆 →</a></div>
     <div class="hero-pics">${photos.slice(0, 5).map((e, i) => `<img class="hp hp${i}" src="${img(e)}" alt="${esc(e.name)}" data-id="${e.id}"/>`).join('')}</div>
   </section>
-  <section><h2 class="sec">🗺️ 展厅地图</h2><div class="map">
+  <section><h2 class="sec">展厅地图</h2><div class="map">
     ${HALLS.map((h, i) => { const first = byHall(h.id)[0]; return `<a class="room r${i}" href="#/hall/${h.id}" style="--c:${h.color}">
-      <img src="${thumbFor(first)}" alt=""/><div><b>${h.icon} ${h.name}</b><small>${byHall(h.id).length} 件展品</small><p>${h.blurb}</p></div></a>`; }).join('')}
-    <a class="room games" href="#/games" style="--c:#c0392b"><div><b>🎮 奶蛙游戏厅</b><small>${GAME_LINKS.length} 个小游戏</small><p>逛累了？纸牌、扫雷、奶了个蛙、打奶蛙、叠叠乐，任你挑。</p></div></a>
+      <img src="${thumbFor(first)}" alt=""/><div><b>${h.name}</b><small>${byHall(h.id).length} 件展品</small><p>${h.blurb}</p></div></a>`; }).join('')}
+    <a class="room games" href="#/games" style="--c:#c0392b"><div><b>奶蛙游戏厅</b><small>${GAME_LINKS.length} 个小游戏</small><p>逛累了？纸牌、扫雷、奶了个蛙、打奶蛙、叠叠乐，任你挑。</p></div></a>
   </div></section>
-  <section><h2 class="sec">📷 影像馆精选</h2>${grid(photos.slice(0, 8))}<p class="more"><a href="#/hall/photo">查看全部 ${photos.length} 张 →</a></p></section>
-  <section><h2 class="sec">🖼️ 名画馆精选</h2>${grid(byHall('art').slice(0, 6))}<p class="more"><a href="#/hall/art">查看全部 ${byHall('art').length} 幅 →</a></p></section>`;
+  <section><h2 class="sec">影像馆精选</h2>${grid(photos.slice(0, 8))}<p class="more"><a href="#/hall/photo">查看全部 ${photos.length} 张 →</a></p></section>
+  <section><h2 class="sec">名画馆精选</h2>${grid(byHall('art').slice(0, 6))}<p class="more"><a href="#/hall/art">查看全部 ${byHall('art').length} 幅 →</a></p></section>`;
 }
 function hall(id: string) {
   const h = HALLS.find(x => x.id === id); if (!h) return entrance();
   const all = byHall(id); const tags = tagsOf(all).filter(t => all.some(e => !e.tags.includes(t)));
   const render = (tag: string) => { const l = tag ? all.filter(e => e.tags.includes(tag)) : all; document.getElementById('hg')!.innerHTML = grid(l); };
-  view.innerHTML = `<section class="hallhead" style="--c:${h.color}"><a href="#/" class="back">← 返回大厅</a><h1>${h.icon} ${h.name}</h1><p>${h.blurb}</p>
+  view.innerHTML = `<section class="hallhead" style="--c:${h.color}"><a href="#/" class="back">← 返回大厅</a><h1>${h.name}</h1><p>${h.blurb}</p>
     ${tags.length ? `<div class="chips"><button class="chip on" data-t="">全部 ${all.length}</button>${tags.map(t => `<button class="chip" data-t="${t}">${t}</button>`).join('')}</div>` : ''}</section><div id="hg"></div>`;
   render('');
   view.querySelectorAll<HTMLButtonElement>('.chip').forEach(c => c.onclick = () => { view.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x === c)); render(c.dataset.t!); });
 }
 function games() {
-  view.innerHTML = `<section class="hallhead" style="--c:#c0392b"><a href="#/" class="back">← 返回大厅</a><h1>🎮 奶蛙游戏厅</h1><p>博物馆自营的奶蛙小游戏，手机电脑都能玩。</p></section>
+  view.innerHTML = `<section class="hallhead" style="--c:#c0392b"><a href="#/" class="back">← 返回大厅</a><h1>奶蛙游戏厅</h1><p>博物馆自营的奶蛙小游戏，手机电脑都能玩。</p></section>
   <div class="games-grid">${GAME_LINKS.map(g => { const e = byHall(g.pic)[[14, 4, 21, 33, 8][GAME_LINKS.indexOf(g)]]; return `<a class="game" href="${g.href}"><img src="${thumbFor(e)}" alt=""/><div><b>${g.name}</b><small>${g.sub}</small><span>开始游戏 →</span></div></a>`; }).join('')}</div>
   <h2 class="sec">奶蛙展品来自这些粉丝游戏</h2><ul class="srcs">${Object.entries(GAMES).filter(([, g]) => g.url).map(([, g]) => `<li><a href="${g.url}" target="_blank" rel="noopener">${g.name}</a></li>`).join('')}</ul>`;
 }
@@ -61,7 +61,7 @@ function credits() {
 }
 function results(s: string) {
   const r = search(s);
-  view.innerHTML = `<section class="hallhead" style="--c:#4a9be0"><a href="#/" class="back">← 返回大厅</a><h1>🔍 “${esc(s)}”</h1><p>找到 ${r.length} 件展品</p></section>${r.length ? grid(r) : '<p class="empty">没找到…换个词试试，比如「朋克」「旅行」「晕」。</p>'}`;
+  view.innerHTML = `<section class="hallhead" style="--c:#4a9be0"><a href="#/" class="back">← 返回大厅</a><h1>“${esc(s)}”</h1><p>找到 ${r.length} 件展品</p></section>${r.length ? grid(r) : '<p class="empty">没找到…换个词试试，比如「朋克」「旅行」「晕」。</p>'}`;
 }
 function route() {
   closeLB(); const h = location.hash.slice(1) || '/'; const [, a, b] = h.split('/');
@@ -84,7 +84,7 @@ async function openLB(id: string) {
     <button class="x" aria-label="关闭">✕</button>
     <div class="stage">${e.model ? `<div class="three" id="three"><p class="loading">3D 模型加载中…</p></div>` : `<img src="${img(e, false)}" alt="${esc(e.name)}" style="aspect-ratio:${e.w}/${e.h}"/>`}
       <button class="nav prev" aria-label="上一件">‹</button><button class="nav next" aria-label="下一件">›</button></div>
-    <div class="info"><small>${hallName} · ${lbIdx + 1}/${current.length}</small><h2>${esc(e.name)}</h2><p>${esc(e.desc)}</p>
+    <div class="info"><small>${hallName} · ${lbIdx + 1}/${current.length}</small><h2>${esc(e.name)}</h2>${e.desc ? `<p>${esc(e.desc)}</p>` : ''}
       <p class="src">来源：${g.url ? `<a href="${g.url}" target="_blank" rel="noopener">${g.name} ↗</a>` : g.name}</p>${e.model ? '<p class="hint">拖动旋转 · 双指/滚轮缩放</p>' : ''}</div></div>`;
   lb.querySelector('.x')!.addEventListener('click', closeLB);
   lb.querySelector('.prev')!.addEventListener('click', ev => { ev.stopPropagation(); step(-1); });
