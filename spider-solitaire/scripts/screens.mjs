@@ -9,15 +9,15 @@ async function run(name, ctxOpts) {
   for (let k = 0; k < 3; k++) {
     const h = await p.evaluate(() => { const s = window.__naiwa.state; return null; });
   }
-  await p.click('.stock'); await p.waitForTimeout(400);
-  await p.screenshot({ path: `${out}/${name}.png` });
+  await p.selectOption('#diff', '4'); await p.waitForTimeout(300); await p.click('.stock'); await p.waitForTimeout(400);
+  await p.screenshot({ path: `${out}/real-${name}.png` });
   const before = await p.evaluate(() => window.__naiwa.state.moves);
   // tap a movable top card via UI
   const cards = await p.$$('.card[data-col]');
   for (const c of cards.reverse()) { await c.click({ force: true }); }
   const after = await p.evaluate(() => window.__naiwa.state.moves);
   await p.evaluate(() => window.__naiwa.showWin()); await p.waitForTimeout(900);
-  await p.screenshot({ path: `${out}/${name}-win.png` });
+  await p.screenshot({ path: `${out}/real-${name}-win.png` });
   await ctx.close(); return { name, before, after };
 }
 console.log(await run('desktop', { viewport: { width: 1280, height: 800 } }));

@@ -16,12 +16,14 @@ button:disabled { opacity: .5; }
 .card.back { background: url(/assets/back.webp) center/100% 100%; }
 .card.dragging { transition: none; z-index: 1000 !important; box-shadow: 0 8px 18px rgba(0,0,0,.4); }
 .card.hint { outline: 3px solid #ffe066; outline-offset: -1px; }
-.card .corner { position: absolute; left: 6%; top: 2%; font-weight: 800; line-height: 1; display: flex; align-items: center; gap: 2px; }
-.card .corner img { width: 1.1em; height: 1.1em; }
-.card.red .corner { color: #d6334d; }
+.card .corner { position: absolute; left: 5%; top: 2%; font-weight: 900; line-height: .95; display: flex; align-items: baseline; gap: 1px; letter-spacing: -.05em; }
+.card .corner .sym { font-size: 1.05em; }
+.card .cicon { position: absolute; right: 1%; top: 1%; width: 40%; height: 27%; object-fit: contain; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
+.card.s0 { color: #222; } .card.s1 { color: #e0283f; } .card.s2 { color: #1f8a3a; } .card.s3 { color: #e8710a; }
+.card.s0 { background: #fdfcf7; } .card.s1 { background: #fff4f5; } .card.s2 { background: #f3fbf1; } .card.s3 { background: #fff7ec; }
 .card .pip { position: absolute; left: 15%; right: 15%; top: 30%; bottom: 8%; background: center/contain no-repeat; }
 .card .face { position: absolute; left: 4%; right: 4%; top: 20%; bottom: 3%; background: center/contain no-repeat; border-radius: 6%; }
-.card .num { position: absolute; right: 8%; bottom: 4%; font-weight: 800; opacity: .25; }
+.card .num { position: absolute; right: 7%; bottom: 3%; font-size: 1.3em; opacity: .7; }
 .stock { position: absolute; cursor: pointer; }
 .stock .card { transition: none; }
 .found { position: absolute; display: flex; }

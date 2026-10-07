@@ -50,10 +50,11 @@ function cardEl(c: Card): HTMLDivElement {
   const key = c.up ? `u${c.rank}${c.suit}` : 'b';
   if (e.dataset.k !== key) {
     e.dataset.k = key;
-    e.className = 'card' + (c.up ? (c.suit === 1 || c.suit === 3 ? ' red' : '') : ' back');
+    e.className = 'card' + (c.up ? ' s' + c.suit : ' back');
     const s = A('suit-' + SUIT_NAMES[c.suit]);
-    e.innerHTML = c.up ? `<div class="corner">${RANKS[c.rank]}<img src="${s}" alt=""></div>` +
-      (c.rank >= 11 || c.rank === 1 ? `<div class="face" style="background-image:url(${A('face-' + RANKS[c.rank])})"></div>` : `<div class="pip" style="background-image:url(${s})"></div><div class="num">${RANKS[c.rank]}</div>`) : '';
+    const sym = '♠♥♣♦'[c.suit];
+    e.innerHTML = c.up ? `<div class="corner"><span>${RANKS[c.rank]}</span><span class="sym">${sym}</span></div><img class="cicon" src="${s}" alt="">` +
+      (c.rank >= 11 || c.rank === 1 ? `<div class="face" style="background-image:url(${A('face-' + RANKS[c.rank])})"></div>` : `<div class="pip" style="background-image:url(${s})"></div><div class="num">${sym}</div>`) : '';
   }
   return e;
 }
@@ -62,7 +63,7 @@ function render() {
   const { cw, ch, top } = L;
   board.querySelectorAll('.slot,.stock,.found').forEach(e => e.remove());
   const keep = new Set<number>();
-  const fs = Math.max(10, cw * 0.22);
+  const fs = Math.max(11, cw * 0.26);
   state.cols.forEach((col, i) => {
     const slot = document.createElement('div'); slot.className = 'slot';
     Object.assign(slot.style, { left: L.colX(i) + 'px', top: top + 'px', width: cw + 'px', height: ch + 'px' });
