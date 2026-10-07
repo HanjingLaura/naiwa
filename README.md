@@ -58,3 +58,30 @@ Classic Minesweeper with naiwa art:
 | face-dizzy.webp | a01bb7af93d35e5c | gugupeng |
 | win.webp | 0a01725bd3bac957 (laughing) | gugupeng |
 | lose.webp | e818016a0d25c224 (dizzy) | gugupeng |
+
+## 奶蛙博物馆 · Naiwa Museum (`museum/`)
+
+Live: https://hanjing-laura.vercel.app/naiwa/museum/
+
+A cute museum site with 222 exhibits in 7 halls:
+- 📷 奶蛙影像馆: Laura's cinematic photos.
+- 🖼️ 奶蛙名画馆: art parodies, Western and Chinese.
+- 👗 服装造型 (costumes), 🤸 动作姿势 (poses), ✉️ 旅行明信片 (travel postcards), ✨ 特效道具 (effects and props).
+- 🧊 3D 模型: a three.js GLB viewer, lazy-loaded, with drag to rotate.
+
+Also includes an entrance page with a hall map, a big lightbox (swipe, arrow keys and Esc work), search, tag filters within each hall, a 游戏厅 page linking the naiwa games, and a credits page.
+
+The exhibit images are built by `scripts/build-exhibits.py`, which reads from the local survey dump and Laura's photo attachments. It makes webp files plus thumbnails, crops the screenshots (black bars and app UI removed), and writes `src/exhibits.json`. 3D thumbnails are made by `scripts/model-thumbs.mjs`.
+
+### ASSETS / credits (`museum/public/ex`, `museum/public/models`)
+
+⚠️ Except for the 影像馆 and 名画馆 images (provided by Laura), all exhibits are **fan-made 奶蛙 assets taken from third-party fan games. They are NOT owned by this repo and are NOT licensed for redistribution.** They are used at the repo owner's discretion. Each exhibit's lightbox shows its source game and a link.
+
+| Hall | Source |
+|---|---|
+| 影像馆, 名画馆 | Laura's collection (images and screenshots she shared, cropped) |
+| 服装造型 | 青蛙矿工 frog-miner (`frog-rare-*`) — https://66970010-boop.github.io/frog-miner/ ; 奶蛙咕咕碰 skins — https://naiwa-gugupeng.pages.dev/ |
+| 动作姿势 | 奶蛙咕咕碰 gugupeng sprites |
+| 旅行明信片 | 奶蛙旅行小屋 TravelMilkyFrog — https://www.bilibili.com/toy/TravelMilkyFrog/index.html |
+| 特效道具 | gugupeng effects; 合成大奶蛙 BigNaiWa fruits — https://yhsome.github.io/BigNaiWa/ ; frog-miner props |
+| 3D 模型 | 奶蛙跳舞 nailong-dance (`rigged.glb`, `baby1.glb`, `gifts/*.glb`) — https://nailong-dance.pages.dev/ |
