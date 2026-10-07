@@ -12,7 +12,9 @@ button:disabled { opacity: .45; }
 #board { position: relative; flex: 1; margin: 4px 0; }
 .tile { position: absolute; border-radius: 14%; background: linear-gradient(#fffef6, #fff2c4); border: 2px solid #c9a24a; box-shadow: 0 4px 0 #b9862a, 0 6px 8px rgba(0,0,0,.18);
   display: grid; place-items: center; cursor: pointer; transition: filter .15s, transform .12s; }
-.tile img { width: 86%; height: 86%; object-fit: contain; pointer-events: none; }
+.tile { overflow: hidden; box-sizing: border-box; }
+/* sprite is pinned inside the tile's padding box so it can never stick out of the frame */
+.tile img { position: absolute; inset: 9%; width: 82%; height: 82%; max-width: 82%; max-height: 82%; object-fit: contain; pointer-events: none; }
 .tile.covered { filter: brightness(.55) saturate(.6); cursor: default; }
 .tile:not(.covered):active { transform: scale(.93); }
 #buffer { display: flex; gap: 4px; justify-content: center; min-height: 0; }

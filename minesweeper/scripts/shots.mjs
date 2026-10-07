@@ -14,7 +14,7 @@ async function run(name, opts, level) {
     ev('pointerdown'); await new Promise(r => setTimeout(r, 500)); ev('pointerup'); });
   else { const i = await p.evaluate(() => window.__ms.b.cells.findIndex(c => !c.open)); await p.click(`.c[data-i="${i}"]`, { button: 'right' }); }
   await p.waitForTimeout(300);
-  const st = await p.evaluate(() => ({ status: window.__ms.b.status, open: window.__ms.b.cells.filter(c => c.open).length, flags: window.__ms.b.cells.filter(c => c.flag).length, overflow: document.getElementById('grid').getBoundingClientRect().right <= innerWidth && document.getElementById('grid').getBoundingClientRect().bottom <= innerHeight }));
+  const st = await p.evaluate(() => ({ status: window.__ms.b.status, open: window.__ms.b.cells.filter(c => c.open).length, flags: window.__ms.b.cells.filter(c => c.flag).length, fitsViewport: (r => r.left >= 0 && r.top >= 0 && r.right <= innerWidth && r.bottom <= innerHeight)(document.getElementById('grid').getBoundingClientRect()) }));
   await p.screenshot({ path: `${O}/${prefix}-${name}.png` });
   console.log(name, st, errs, bad); await ctx.close();
 }

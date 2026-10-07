@@ -16,6 +16,9 @@ def clean(p, mx):
     sz = ndimage.sum(np.ones_like(lab), lab, range(1, n + 1))
     a[~ndimage.binary_dilation(lab == np.argmax(sz) + 1, iterations=2), 3] = 0
   im = Image.fromarray(a); im = im.crop(im.getbbox()); im.thumbnail((mx, mx), Image.LANCZOS); return im
-for i, p in enumerate(TILES): clean(p, 128).save(f'public/assets/t{i}.webp', 'WEBP', quality=82, method=4)
+def square(im, n=128):
+  # normalise to an n x n canvas with transparent padding, sprite centred
+  im.thumbnail((n - 8, n - 8), Image.LANCZOS); c = Image.new('RGBA', (n, n)); c.paste(im, ((n - im.width) // 2, (n - im.height) // 2)); return c
+for i, p in enumerate(TILES): square(clean(p, 240)).save(f'public/assets/t{i}.webp', 'WEBP', quality=82, method=4)
 for k, p in EXTRA.items(): clean(p, 360).save(f'public/assets/{k}.webp', 'WEBP', quality=82, method=4)
 print('ok', len(TILES))
