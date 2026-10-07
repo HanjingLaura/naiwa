@@ -84,7 +84,7 @@ The exhibit images are built by `scripts/build-exhibits.py`, which reads from th
 | 动作姿势 | 奶蛙咕咕碰 gugupeng sprites |
 | 旅行明信片 | 奶蛙旅行小屋 TravelMilkyFrog — https://www.bilibili.com/toy/TravelMilkyFrog/index.html |
 | 特效道具 | gugupeng effects; 合成大奶蛙 BigNaiWa fruits — https://yhsome.github.io/BigNaiWa/ ; frog-miner props |
-| 3D 模型 | 奶蛙跳舞 nailong-dance (`rigged.glb`, `baby1.glb`, `gifts/*.glb`) — https://nailong-dance.pages.dev/ |
+| 3D 模型 | 奶蛙跳舞 nailong-dance (`rigged.glb`, `baby1.glb`, `gifts/*.glb` plus their external texture `gifts/Textures/colormap.png`, saved as `models/Textures/colormap.png`) — https://nailong-dance.pages.dev/ |
 
 ## 奶了个蛙 · Triple-match (`nailegewa/`)
 
@@ -109,7 +109,7 @@ A 羊了个羊-style game with naiwa tile faces:
 | win.webp | bdde48ade4583f2a | 奶蛙咕咕碰 gugupeng — https://naiwa-gugupeng.pages.dev/ |
 | lose.webp | a01bb7af93d35e5c | gugupeng |
 
-## 奶蛙打地鼠 · Whack-a-Naiwa (`whack/`)
+## 打奶蛙 · Whack-a-Naiwa (`whack/`)
 
 Live: https://hanjing-laura.vercel.app/naiwa/whack/
 
@@ -128,3 +128,24 @@ Live: https://hanjing-laura.vercel.app/naiwa/whack/
 | gold.webp / gold-hit.webp | skins/naiwa-galaxy-shepherd / bdde48ade4583f2a |
 | bomb.webp / bomb-hit.webp | e7c4f898cd836e40 / 3cf447de0a6da507 |
 | win.webp | 0a01725bd3bac957 |
+
+## 奶蛙叠叠乐 · Naiwa Stack (`stack/`)
+
+Live: https://hanjing-laura.vercel.app/naiwa/stack/
+
+- Tap (or press Space) to drop the naiwa sliding across the top onto the tower.
+- Landing within 2.5 units of the centre is a perfect drop: it snaps to the centre, and consecutive perfects give combo bonus points.
+- The tower collapses when the centre of mass above any naiwa moves past that naiwa's footprint. Missing the tower ends the game too.
+- It speeds up as the tower grows. The best height is saved in localStorage. Optional sounds, fixed mobile screen.
+- The logic in `src/stack.ts` is pure and covered by unit tests (bounce, perfect snap and combo, offset, miss, centre-of-mass collapse, speed-up, best score).
+
+### ASSETS / credits (`stack/public/assets/`)
+
+⚠️ These are **fan-made 奶蛙 assets taken from third-party fan games. They are NOT owned by this repo and are NOT licensed for redistribution.** They are used at the repo owner's discretion.
+
+| File | Source image | Source game |
+|---|---|---|
+| b0–b11.webp (stack naiwa) | frog-rare-9, 34, 36, 32, 25, 4, 8, 44, 38, 26, 30, 35 | 青蛙矿工 frog-miner — https://66970010-boop.github.io/frog-miner/ |
+| logo.webp | frog-rare-22 | frog-miner |
+| fall.webp | a01bb7af93d35e5c | 奶蛙咕咕碰 gugupeng — https://naiwa-gugupeng.pages.dev/ |
+| win.webp | bdde48ade4583f2a | gugupeng |

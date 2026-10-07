@@ -47,7 +47,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 16px; min-height: 70vh; }
 .chip.on { background: var(--c); color: #fff; }
 .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
 .game { display: flex; gap: 14px; align-items: center; padding: 16px; background: #fff; border-radius: 22px; text-decoration: none; box-shadow: 0 5px 0 #e0b020; }
-.game img { width: 110px; height: 110px; object-fit: contain; } .game b { font-size: 22px; display: block; } .game small { opacity: .6; } .game span { display: inline-block; margin-top: 8px; font-weight: 800; color: #c0392b; }
+.game img { width: 110px; height: 110px; object-fit: contain; flex: none; } .game div { min-width: 0; } .game b { font-size: 22px; display: block; } .game small { display: block; opacity: .6; } .game span { display: block; margin-top: 8px; font-weight: 800; color: #c0392b; }
 .srcs li { margin: 6px 0; }
 .credits { border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; } .credits td, .credits th { padding: 8px 16px; border-bottom: 1px solid #f0e2b0; text-align: left; }
 .empty { text-align: center; padding: 40px; opacity: .7; }
@@ -77,3 +77,4 @@ main { max-width: 1240px; margin: 0 auto; padding: 16px; min-height: 70vh; }
   .three { height: 52dvh; }
 }
 .more { text-align: right; font-weight: 700; } .ex.art .pic { max-height: 420px; }
+@media (max-width: 760px) { .game { padding: 12px; gap: 10px; } .game img { width: 84px; height: 84px; } .game b { font-size: 19px; } }

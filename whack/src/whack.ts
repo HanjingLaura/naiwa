@@ -1,4 +1,4 @@
-/** 奶蛙打地鼠 core logic. Pure + time-injected (ms) so it is unit-testable. */
+/** 打奶蛙 core logic. Pure + time-injected (ms) so it is unit-testable. */
 export type Kind = 'normal' | 'gold' | 'bomb';
 export interface Mole { kind: Kind; up: number; until: number; hit: boolean; hitAt: number }
 export interface State {
