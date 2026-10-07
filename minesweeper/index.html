@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#ffd84a"/><title>奶蛙扫雷 · Naiwa Minesweeper</title>
+<link rel="icon" href="./assets/mine.webp"/></head>
+<body><div id="app">
+<header id="top">
+  <div class="title">奶蛙扫雷</div>
+  <div class="levels"><button data-l="beginner">初级</button><button data-l="intermediate">中级</button><button data-l="expert">高级</button></div>
+</header>
+<section id="panel">
+  <div class="lcd" id="count" title="剩余雷数">010</div>
+  <button id="face" aria-label="新局"><img id="faceimg" src="./assets/face-idle.webp" alt=""/></button>
+  <div class="lcd" id="timer" title="用时">000</div>
+</section>
+<main id="wrap"><div id="grid"></div></main>
+<footer id="foot"><button id="mode" aria-pressed="false"><img src="./assets/flag.webp" alt=""/><span>插旗模式：关</span></button><span class="tip" id="tip"></span></footer>
+<div id="overlay" hidden><div class="pop"><img id="popimg" alt=""/><h2 id="poptitle"></h2><p id="poptext"></p><button id="again">再来一局</button></div></div>
+</div><script type="module" src="/src/main.ts"></script></body></html>
