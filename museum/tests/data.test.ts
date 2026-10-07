@@ -12,7 +12,7 @@ describe('museum data', () => {
       expect(ids.has(e.id)).toBe(false); ids.add(e.id);
       expect(e.name.length).toBeGreaterThan(0); expect(e.desc.length).toBeGreaterThan(4);
       expect(GAMES[e.game]).toBeTruthy();
-      if (e.model) { expect(existsSync('public/' + e.model)).toBe(true); expect(existsSync(`public/ex/${e.id}-t.webp`)).toBe(true); }
+      if (e.model) { expect(existsSync('public/' + e.model)).toBe(true); expect(existsSync('public/models/Textures/colormap.png')).toBe(true); expect(existsSync(`public/ex/${e.id}-t.webp`)).toBe(true); }
       else { expect(existsSync(`public/ex/${e.id}.webp`)).toBe(true); expect(existsSync(`public/ex/${e.id}-t.webp`)).toBe(true); }
     }
   });

@@ -10,7 +10,8 @@ const GAME_LINKS = [
   { name: '奶娃纸牌', sub: '蜘蛛纸牌 · 1/2/4 花色', href: '/naiwa/spider-solitaire/', pic: 'costume' },
   { name: '奶蛙扫雷', sub: '经典扫雷 · 初级/中级/高级', href: '/naiwa/minesweeper/', pic: 'pose' },
   { name: '奶了个蛙', sub: '三消堆叠 · 7 格槽位', href: '/naiwa/nailegewa/', pic: 'costume' },
-  { name: '奶蛙打地鼠', sub: '60 秒 · 连击 · 金奶蛙', href: '/naiwa/whack/', pic: 'pose' },
+  { name: '打奶蛙', sub: '60 秒 · 连击 · 金奶蛙', href: '/naiwa/whack/', pic: 'pose' },
+  { name: '奶蛙叠叠乐', sub: '叠高高 · 完美连击 · 小心重心', href: '/naiwa/stack/', pic: 'costume' },
 ];
 document.getElementById('links')!.innerHTML = HALLS.map(h => `<a href="#/hall/${h.id}">${h.icon}<span>${h.name.replace('奶蛙', '').replace('馆', '')}</span></a>`).join('') + `<a href="#/games">🎮<span>游戏厅</span></a>`;
 
@@ -34,7 +35,7 @@ function entrance() {
   <section><h2 class="sec">🗺️ 展厅地图</h2><div class="map">
     ${HALLS.map((h, i) => { const first = byHall(h.id)[0]; return `<a class="room r${i}" href="#/hall/${h.id}" style="--c:${h.color}">
       <img src="${thumbFor(first)}" alt=""/><div><b>${h.icon} ${h.name}</b><small>${byHall(h.id).length} 件展品</small><p>${h.blurb}</p></div></a>`; }).join('')}
-    <a class="room games" href="#/games" style="--c:#c0392b"><div><b>🎮 奶蛙游戏厅</b><small>${GAME_LINKS.length} 个小游戏</small><p>逛累了？来玩一局奶蛙纸牌或奶蛙扫雷。</p></div></a>
+    <a class="room games" href="#/games" style="--c:#c0392b"><div><b>🎮 奶蛙游戏厅</b><small>${GAME_LINKS.length} 个小游戏</small><p>逛累了？纸牌、扫雷、奶了个蛙、打奶蛙、叠叠乐，任你挑。</p></div></a>
   </div></section>
   <section><h2 class="sec">📷 影像馆精选</h2>${grid(photos.slice(0, 8))}<p class="more"><a href="#/hall/photo">查看全部 ${photos.length} 张 →</a></p></section>
   <section><h2 class="sec">🖼️ 名画馆精选</h2>${grid(byHall('art').slice(0, 6))}<p class="more"><a href="#/hall/art">查看全部 ${byHall('art').length} 幅 →</a></p></section>`;
@@ -50,7 +51,7 @@ function hall(id: string) {
 }
 function games() {
   view.innerHTML = `<section class="hallhead" style="--c:#c0392b"><a href="#/" class="back">← 返回大厅</a><h1>🎮 奶蛙游戏厅</h1><p>博物馆自营的奶蛙小游戏，手机电脑都能玩。</p></section>
-  <div class="games-grid">${GAME_LINKS.map(g => { const e = byHall(g.pic)[[14, 4, 21, 33][GAME_LINKS.indexOf(g)]]; return `<a class="game" href="${g.href}"><img src="${thumbFor(e)}" alt=""/><div><b>${g.name}</b><small>${g.sub}</small><span>开始游戏 →</span></div></a>`; }).join('')}</div>
+  <div class="games-grid">${GAME_LINKS.map(g => { const e = byHall(g.pic)[[14, 4, 21, 33, 8][GAME_LINKS.indexOf(g)]]; return `<a class="game" href="${g.href}"><img src="${thumbFor(e)}" alt=""/><div><b>${g.name}</b><small>${g.sub}</small><span>开始游戏 →</span></div></a>`; }).join('')}</div>
   <h2 class="sec">奶蛙展品来自这些粉丝游戏</h2><ul class="srcs">${Object.entries(GAMES).filter(([, g]) => g.url).map(([, g]) => `<li><a href="${g.url}" target="_blank" rel="noopener">${g.name}</a></li>`).join('')}</ul>`;
 }
 function credits() {
@@ -65,7 +66,8 @@ function results(s: string) {
 function route() {
   closeLB(); const h = location.hash.slice(1) || '/'; const [, a, b] = h.split('/');
   if (a === 'hall') hall(b); else if (a === 'games') games(); else if (a === 'credits') credits();
-  else if (a === 'search') { const s = decodeURIComponent(b || ''); q.value = s; results(s); } else entrance();
+  else if (a === 'search') { const s = decodeURIComponent(b || ''); if (document.activeElement !== q) q.value = s; results(s); } else entrance();
+  if (a !== 'search' && document.activeElement !== q) q.value = '';
   document.querySelectorAll('#links a').forEach(x => x.classList.toggle('on', (x as HTMLAnchorElement).hash === '#' + h));
   if (!h.startsWith('/search')) window.scrollTo(0, 0);
   const m = new URLSearchParams(location.search).get('open'); if (m) openLB(m);

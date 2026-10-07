@@ -6,7 +6,7 @@ from PIL import Image
 from scipy import ndimage
 S = '/workspace/naiwa-survey'
 PHOTOS = '/home/box/agent-data/agents/15676c22-9dde-4504-bf3a-6d03f974f206/attachments'
-OUT = 'public/ex'; os.makedirs(OUT, exist_ok=True); os.makedirs('public/models', exist_ok=True)
+OUT = 'public/ex'; os.makedirs(OUT, exist_ok=True); os.makedirs('public/models/Textures', exist_ok=True)
 GAMES = {
   'photo': ('Laura 的奶蛙相册', ''),
   'miner': ('青蛙矿工 frog-miner', 'https://66970010-boop.github.io/frog-miner/'),
@@ -134,5 +134,6 @@ for f, n, d in [('rigged.glb', '跳舞奶蛙（带骨骼）', '可以跳舞的 3
                 ('gifts/g-hotdog.glb', '热狗', '观众扔上台的礼物：热狗。'), ('gifts/grapes.glb', '一串葡萄', '观众扔上台的礼物：一串葡萄。')]:
   eid = f'model-{len(ex):03d}'; shutil.copy(D + f, f'public/models/{eid}.glb')
   ex.append(dict(id=eid, hall='model', name=n, desc=d, game='dance', model=f'models/{eid}.glb', w=600, h=600, tags=['3D', '模型']))
+shutil.copy(D + 'gifts/Textures/colormap.png', 'public/models/Textures/colormap.png')  # gift GLBs reference this external texture
 json.dump({'games': {k: {'name': v[0], 'url': v[1]} for k, v in GAMES.items()}, 'exhibits': ex}, open('src/exhibits.json', 'w'), ensure_ascii=False, indent=1)
 print(len(ex), {h_: sum(1 for e in ex if e['hall'] == h_) for h_ in ['photo', 'art', 'costume', 'pose', 'postcard', 'fx', 'model']})
