@@ -10,7 +10,8 @@
     "test": "vitest run",
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:vercel": "tsc && BASE_PATH=/naiwa/spider-solitaire/ vite build --outDir dist/naiwa/spider-solitaire --emptyOutDir"
   },
   "keywords": [],
   "author": "",
