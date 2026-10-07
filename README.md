@@ -108,3 +108,23 @@ A 羊了个羊-style game with naiwa tile faces:
 | logo.webp | frog-rare-22 | frog-miner |
 | win.webp | bdde48ade4583f2a | 奶蛙咕咕碰 gugupeng — https://naiwa-gugupeng.pages.dev/ |
 | lose.webp | a01bb7af93d35e5c | gugupeng |
+
+## 奶蛙打地鼠 · Whack-a-Naiwa (`whack/`)
+
+Live: https://hanjing-laura.vercel.app/naiwa/whack/
+
+- Naiwa pop out of 9 holes. Normal naiwa are +10, golden naiwa +50. The dizzy naiwa is −30, resets your combo and stuns you briefly.
+- Hit naiwa change to a reaction pose. Combo multiplier: ×1.5 at 5 hits, ×2 at 10, and so on. Missing or letting a naiwa escape breaks the combo.
+- 60-second round that speeds up over time. High score saved in localStorage, optional sounds, fixed mobile screen with tap input.
+- The game logic in `src/whack.ts` is pure and time-injected, so it can be unit-tested (`npm test`). It was written fresh, not ported from 胡同地鼠.
+
+### ASSETS / credits (`whack/public/assets/`)
+
+⚠️ These are **fan-made 奶蛙 assets taken from 奶蛙咕咕碰 gugupeng (https://naiwa-gugupeng.pages.dev/). They are NOT owned by this repo and are NOT licensed for redistribution.** They are used at the repo owner's discretion.
+
+| File | Source image |
+|---|---|
+| normal.webp / hit.webp | 07a8abdf58338ff6 / e3d3581cc9141994 |
+| gold.webp / gold-hit.webp | skins/naiwa-galaxy-shepherd / bdde48ade4583f2a |
+| bomb.webp / bomb-hit.webp | e7c4f898cd836e40 / 3cf447de0a6da507 |
+| win.webp | 0a01725bd3bac957 |

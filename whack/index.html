@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#7cc15a"/><title>奶蛙打地鼠 · Whack-a-Naiwa</title>
+<link rel="icon" href="./assets/normal.webp"/></head>
+<body><div id="app">
+<header id="top"><div class="title">奶蛙打地鼠</div><button id="snd">🔊</button></header>
+<section id="hud"><div><small>分数</small><b id="score">0</b></div><div><small>时间</small><b id="time">60</b></div><div><small>连击</small><b id="combo">0</b></div><div><small>最高</small><b id="best">0</b></div></section>
+<main id="field"></main>
+<p id="legend"><span><img src="./assets/normal.webp" alt=""/>+10</span><span><img src="./assets/gold.webp" alt=""/>金奶蛙 +50</span><span><img src="./assets/bomb.webp" alt=""/>晕晕蛙 −30 别打！</span></p>
+<div id="overlay"><div class="pop"><img id="popimg" src="./assets/normal.webp" alt=""/><h2 id="poptitle">奶蛙打地鼠</h2><p id="poptext">60 秒内尽量多打奶蛙！<br/>连击越多倍数越高，金奶蛙 +50，<br/>晕晕蛙千万别打。</p><button id="go">开始</button></div></div>
+</div><script type="module" src="/src/main.ts"></script></body></html>
