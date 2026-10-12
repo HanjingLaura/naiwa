@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#b8e0ff"/><title>奶蛙跳一跳 · Naiwa Jump</title>
+<link rel="icon" href="./assets/logo.webp"/></head>
+<body><div id="app">
+<header id="top"><div class="title">奶蛙跳一跳</div>
+<div class="hud"><span>得分 <b id="score">0</b></span><span>最高 <b id="best">0</b></span></div>
+<button id="snd">🔊</button></header>
+<main id="stage"><canvas id="cv"></canvas><div id="power"><i id="bar"></i></div></main>
+<p id="tip">按住蓄力，松手跳出 · 落在台子中心有额外加分</p>
+<div id="overlay"><div class="pop"><img id="popimg" src="./assets/logo.webp" alt=""/>
+<h2 id="poptitle">奶蛙跳一跳</h2><p id="poptext">按住屏幕蓄力，松手让奶蛙跳到下一座台子！</p>
+<button id="go">开始</button></div></div>
+</div><script type="module" src="/src/main.ts"></script></body></html>

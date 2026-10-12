@@ -1,0 +1,16 @@
+{
+  "name": "naiwa-fly",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:vercel": "tsc && BASE_PATH=/naiwa/fly/ vite build --outDir dist/naiwa/fly --emptyOutDir",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3"
+  }
+}

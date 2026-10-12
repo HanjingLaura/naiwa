@@ -160,3 +160,53 @@ Live: https://hanjing-laura.vercel.app/naiwa/stack/
 | win.webp | bdde48ade4583f2a | gugupeng |
 
 **Blocks (v2):** b0–b21 interleave frog-miner costumes with gugupeng 93db9f, 01662141, 04fd2f (奶蛋), naishu-v24-idle, 97e2373e, 4690b22b and skins galaxy-shepherd, night-foreman, naidan-caramel-pop, naishu-yogurt-punk. Fan assets; not owned by this repo.
+
+## 奶蛙接水果 · Catch (`catch/`)
+
+Hold the yellow 奶蛙 under falling fruit. Gems are bonus; bombs cost lives. Combo multiplies score. 3 lives, high score in localStorage.
+
+```bash
+cd catch && npm install && npm run dev   # npm test · npm run build
+```
+
+CC0 assets: Kenney Animal Pack Redux (yellow-tinted frog), ScratchIO 2D Fruits, Kenney Abstract Platformer (gem/bomb/hills). See `catch/README.md`.
+
+## 奶蛙打砖块 · Breakout (`breakout/`)
+
+奶蛙 paddle + gem ball breakout. Clear the coloured brick rows; 3 balls. Click to launch.
+
+```bash
+cd breakout && npm install && npm run dev
+```
+
+CC0: Kenney Animal Pack Redux frog + Abstract Platformer bricks/gems. See `breakout/README.md`.
+
+## 奶蛙跳一跳 · Jump (`jump/`)
+
+Hold to charge, release to leap to the next platform. Centre landings score perfect bonus.
+
+```bash
+cd jump && npm install && npm run dev
+```
+
+CC0: Kenney frog + Abstract Platformer blocks. See `jump/README.md`.
+
+## 奶蛙飞飞 · Fly (`fly/`)
+
+Flappy-style: tap to flap through pipe gaps. Score one point per gap.
+
+```bash
+cd fly && npm install && npm run dev
+```
+
+CC0: Kenney frog + Abstract Platformer pipes. See `fly/README.md`.
+
+## 奶蛙消消乐 · Match3 (`match3/`)
+
+Swap adjacent tiles, clear 3+, cascade. Reach 200 points in 20 moves.
+
+```bash
+cd match3 && npm install && npm run dev
+```
+
+CC0: Kenney animals (tile faces) + ScratchIO fruits. See `match3/README.md`.
