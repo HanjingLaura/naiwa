@@ -129,12 +129,9 @@ for k, n, d in [('ice-1', '大冰块', '矿洞里挖出来的冰块，奶蛙舔�
   add('fx', f'{M}{k}.webp', n, d, 'miner', thumb=300, tags=['道具'])
 # ---------- 6. 3D 模型馆 ----------
 D = f'{S}/02-dance/files/'
-for f, n, d in [('rigged.glb', '跳舞奶蛙（带骨骼）', '可以跳舞的 3D 奶蛙模型，拖动旋转，看看它的大肚皮。'), ('baby1.glb', '开场奶蛙', '跳舞游戏开场时登场的奶蛙模型。'),
-                ('gifts/muffin.glb', '纸杯蛋糕', '观众扔上台的礼物：一个纸杯蛋糕。'), ('gifts/ice-cream-cne.glb', '甜筒', '观众扔上台的礼物：甜筒冰淇淋。'),
-                ('gifts/g-hotdog.glb', '热狗', '观众扔上台的礼物：热狗。'), ('gifts/grapes.glb', '一串葡萄', '观众扔上台的礼物：一串葡萄。')]:
+for f, n, d in [('rigged.glb', '跳舞奶蛙（带骨骼）', '可以跳舞的 3D 奶蛙模型，拖动旋转，看看它的大肚皮。'), ('baby1.glb', '开场奶蛙', '跳舞游戏开场时登场的奶蛙模型。')]:
   eid = f'model-{len(ex):03d}'; shutil.copy(D + f, f'public/models/{eid}.glb')
   ex.append(dict(id=eid, hall='model', name=n, desc=d, game='dance', model=f'models/{eid}.glb', w=600, h=600, tags=['3D', '模型']))
-shutil.copy(D + 'gifts/Textures/colormap.png', 'public/models/Textures/colormap.png')  # gift GLBs reference this external texture
 from captions import caption
 for e in ex: e['desc'] = caption(e)
 json.dump({'games': {k: {'name': v[0], 'url': v[1]} for k, v in GAMES.items()}, 'exhibits': ex}, open('src/exhibits.json', 'w'), ensure_ascii=False, indent=1)
