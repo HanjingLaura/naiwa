@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#ffe6f0"/><title>奶蛙消消乐 · Naiwa Match3</title>
+<link rel="icon" href="./assets/logo.webp"/></head>
+<body><div id="app">
+<header id="top"><div class="title">奶蛙消消乐</div>
+<div class="hud"><span>得分 <b id="score">0</b></span><span>步数 <b id="moves">20</b></span><span>目标 <b id="goal">200</b></span></div>
+<button id="snd">🔊</button></header>
+<main id="stage"><div id="board"></div></main>
+<p id="tip">点击两只相邻的交换 · 三个相同即可消除</p>
+<div id="overlay"><div class="pop"><img id="popimg" src="./assets/logo.webp" alt=""/>
+<h2 id="poptitle">奶蛙消消乐</h2><p id="poptext">交换相邻方块，凑成三个相同的消掉！20 步内达到目标分。</p>
+<button id="go">开始</button></div></div>
+</div><script type="module" src="/src/main.ts"></script></body></html>
