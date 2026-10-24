@@ -161,6 +161,26 @@ Live: https://hanjing-laura.vercel.app/naiwa/stack/
 
 **Blocks (v2):** b0–b21 interleave frog-miner costumes with gugupeng 93db9f, 01662141, 04fd2f (奶蛋), naishu-v24-idle, 97e2373e, 4690b22b and skins galaxy-shepherd, night-foreman, naidan-caramel-pop, naishu-yogurt-punk. Fan assets; not owned by this repo.
 
+## 奶蛙五子棋 · Gomoku (`gomoku/`)
+
+Live: https://hanjing-laura.vercel.app/naiwa/gomoku/
+
+- Classic 15×15 Gomoku (five-in-a-row) with cute 奶蛙 theme.
+- Two game modes: **双人对战** (local hot-seat) and **人机对战** (vs fast heuristic AI; option to play as Black first or White second).
+- Features: new game, undo (悔棋), last move indicator, win ray highlight, optional procedural WebAudio sound effects (muted toggle), persistent win/loss counters in localStorage.
+- Mobile + desktop friendly: touch/click to place stone with hit-target snapping, ghost preview on hover, fixed viewport in portrait.
+- Pure game logic and AI in `src/gomoku.ts` with passing Vitest unit tests (`npm test`). `npm run build:vercel` builds for `/naiwa/gomoku/`.
+
+### ASSETS / credits (`gomoku/public/assets/`)
+
+⚠️ These are **fan-made 奶蛙 assets taken from third-party fan games. They are NOT owned by this repo and are NOT licensed for redistribution.** They are used at the repo owner's discretion.
+
+| File | Source image | Source game |
+|---|---|---|
+| frog-black.webp, face-win.webp, face-dizzy.webp | face-idle, face-win, face-dizzy | 青蛙矿工 frog-miner — https://66970010-boop.github.io/frog-miner/ |
+| frog-white.webp, logo.webp | gold0, normal0 | 奶蛙咕咕碰 gugupeng — https://naiwa-gugupeng.pages.dev/ |
+| win.webp, lose.webp | win, lose | gugupeng / frog-miner |
+
 ## 奶蛙接水果 · Catch (`catch/`)
 
 Hold the yellow 奶蛙 under falling fruit. Gems are bonus; bombs cost lives. Combo multiplies score. 3 lives, high score in localStorage.

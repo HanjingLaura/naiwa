@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <meta name="theme-color" content="#dfad67" />
+  <title>奶蛙五子棋 · Naiwa Gomoku</title>
+  <link rel="icon" href="./assets/logo.webp" />
+</head>
+<body>
+  <div id="app">
+    <header id="top">
+      <a class="nav-back" href="/naiwa/museum/#/games" title="返回游戏厅">← 游戏厅</a>
+      <div class="title">奶蛙五子棋</div>
+      <div class="top-actions">
+        <button id="snd" aria-label="声音开关" title="声音开关">🔊</button>
+        <button id="restart" aria-label="重新开始" title="新局">新局</button>
+      </div>
+    </header>
+
+    <section id="panel">
+      <div class="modes">
+        <button id="mode-pve" class="pill on">人机对战</button>
+        <button id="mode-pvp" class="pill">双人对战</button>
+      </div>
+      <div class="sub-actions">
+        <button id="swap" class="pill-sub">执黑(先)</button>
+        <button id="undo" class="pill-sub">悔棋</button>
+      </div>
+    </section>
+
+    <section id="hud">
+      <div class="player-card black" id="card-black">
+        <div class="avatar-wrap">
+          <img class="avatar" src="./assets/frog-black.webp" alt="黑方" />
+        </div>
+        <div class="p-info">
+          <div class="p-name">黑棋 <span class="tag" id="tag-black">玩家</span></div>
+          <div class="p-stat" id="stat-black">胜 0</div>
+        </div>
+      </div>
+
+      <div class="turn-indicator" id="turn-box">
+        <div class="turn-dot" id="turn-dot"></div>
+        <div class="turn-text" id="turn-text">黑棋回合</div>
+      </div>
+
+      <div class="player-card white" id="card-white">
+        <div class="avatar-wrap">
+          <img class="avatar" src="./assets/frog-white.webp" alt="白方" />
+        </div>
+        <div class="p-info">
+          <div class="p-name">白棋 <span class="tag" id="tag-white">电脑</span></div>
+          <div class="p-stat" id="stat-white">负 0</div>
+        </div>
+      </div>
+    </section>
+
+    <main id="board-wrap">
+      <div id="board-box">
+        <canvas id="cv"></canvas>
+      </div>
+    </main>
+
+    <footer id="foot">
+      <span id="tip">点击棋盘交叉点落子 · 五子连珠获胜 🐸</span>
+    </footer>
+
+    <div id="overlay" hidden>
+      <div class="pop">
+        <img id="popimg" src="./assets/win.webp" alt="" />
+        <h2 id="poptitle">恭喜获胜！</h2>
+        <p id="poptext">五子连珠，奶蛙为你欢呼！</p>
+        <button id="again">再来一局</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
