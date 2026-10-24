@@ -137,6 +137,8 @@ export function undoMove(state: GomokuState): boolean {
   }
 
   // PvE mode:
+  // The computer's opening is not a human move that can be undone.
+  if (!state.history.some(move => move.color === state.playerColor)) return false;
   // If game is over and was won by player or draw, undo last 1 or 2 moves
   // If AI just moved (human's turn), undo both AI's move and human's move
   // If human just moved (AI's turn), undo human's move

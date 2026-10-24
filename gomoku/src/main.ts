@@ -71,6 +71,7 @@ let humanColor: Player = (localStorage.getItem('naiwa-gomoku-human') as Player) 
 let soundEnabled = localStorage.getItem('naiwa-gomoku-sound') !== '0';
 let game: GomokuState = createGame(mode, humanColor);
 let isAiThinking = false;
+let aiTimer: number | undefined;
 let hoverCoord: [number, number] | null = null;
 let ac: AudioContext | null = null;
 
@@ -381,7 +382,8 @@ function updateUI() {
     turnText.textContent = '势均力敌(平局)';
   }
 
-  undoBtn.disabled = game.history.length === 0 || isAiThinking;
+  undoBtn.disabled = isAiThinking || !game.history.some(move =>
+    game.mode === 'pvp' || move.color === game.playerColor);
   render();
 }
 
@@ -438,13 +440,16 @@ function triggerMove(x: number, y: number) {
 }
 
 function runAiTurn() {
+  const scheduledGame = game;
   isAiThinking = true;
   updateUI();
 
   // Natural thinking pause (100 - 180ms)
   const delay = Math.floor(Math.random() * 80) + 100;
-  window.setTimeout(() => {
-    if (game.status !== 'playing') {
+  aiTimer = window.setTimeout(() => {
+    if (game !== scheduledGame) return;
+    aiTimer = undefined;
+    if (game.status !== 'playing' || game.mode !== 'pve' || game.turn === game.playerColor) {
       isAiThinking = false;
       return;
     }
@@ -463,6 +468,8 @@ function runAiTurn() {
 
 // User Actions
 function newGame() {
+  if (aiTimer !== undefined) window.clearTimeout(aiTimer);
+  aiTimer = undefined;
   overlay.hidden = true;
   isAiThinking = false;
   game = createGame(mode, humanColor);
